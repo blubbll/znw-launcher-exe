@@ -1,0 +1,9 @@
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\bin\Debug\Web_Browser.exe.config
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\bin\Debug\Web_Browser.exe
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\bin\Debug\Web_Browser.pdb
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Launcher.csprojResolveAssemblyReference.cache
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Launcher.Form1.resources
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.Properties.Resources.resources
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Launcher.csproj.GenerateResource.Cache
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.exe
+C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.pdb
