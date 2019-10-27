@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using Launcher.classes;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -59,12 +60,12 @@ namespace Launcher
             if (File.Exists(tokenFile))
                 token = File.ReadAllText(tokenFile);
             if (File.Exists(gamesFile))
-                games = new List<string>(File.ReadAllLines(gamesFile));
+                gamelist = new List<string>(File.ReadAllLines(gamesFile));
 
             //construct web launch url
-            var url = $"https://launcher.znw.gg/?"+
-                $"{(token != null ? $"token={token}" : "")}"+
-                $"{(games.Count != 0 ? $"&games={String.Join(",", games)}" : "")}";
+            var url = $"https://launcher.znw.gg/?" +
+                $"{(token != null ? $"token={token}" : "")}" +
+                $"{(gamelist.Count != 0 ? $"&games={String.Join(",", gamelist)}" : "")}";
             //Connect to Webapp to show the GUI
             webBrowser1.Navigate(url);
 
@@ -107,14 +108,23 @@ namespace Launcher
 
                         case "GAME_ADD":
                             {
-                                games.Add(args);
-                                File.WriteAllLines(Program.gamesFile, games);
-                            } break;
+                                games.install(args);
+                                gamelist.Add(args);
+                                File.WriteAllLines(Program.gamesFile, gamelist);
+                            }
+                            break;
+
+                        case "GAME_START":
+                            {
+                                gamelist.Add(args);
+                                File.WriteAllLines(Program.gamesFile, gamelist);
+                            }
+                            break;
 
                         case "GAME_REMOVE":
                             {
-                                games.Remove(args);
-                                File.WriteAllLines(Program.gamesFile, games);
+                                gamelist.Remove(args);
+                                File.WriteAllLines(Program.gamesFile, gamelist);
                             }
                             break;
 

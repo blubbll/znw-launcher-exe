@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Web_Browser.classes
+namespace Launcher.classes
 {
-    class games
+    static class games
     {
-        static void install(string delim)
+        public static void install(string delim)
         {
 
         }
@@ -18,12 +18,12 @@ namespace Web_Browser.classes
 
         }
 
-        static void start(string delim)
+        public  static void start(string delim)
         {
 
         }
 
-        static void uninstall(string delim)
+        public static void uninstall(string delim)
         {
 
         }

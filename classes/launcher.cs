@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 
-namespace Web_Browser.classes
+namespace Launcher.classes
 {
     internal class launcher
     {

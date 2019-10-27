@@ -11,7 +11,7 @@ namespace Launcher
 
         //vars
         public static string token = null;
-        public static List<string> games = new List<string> { };
+        public static List<string> gamelist = new List<string> { };
 
         public static string userDir = $"{AppDomain.CurrentDomain.BaseDirectory}/user";
 
