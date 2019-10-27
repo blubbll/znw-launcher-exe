@@ -35,10 +35,9 @@ namespace Launcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            const double size = 1.75;
-
-            this.Height = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height / size);
-            this.Width = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Width / size);
+            const double size = .75;
+            this.Height = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Height * size);
+            this.Width = Convert.ToInt32(Screen.PrimaryScreen.Bounds.Width * size);
             this.CenterToScreen();
         }
 
@@ -49,7 +48,19 @@ namespace Launcher
 
         private void myBrowser()
         {
-            webBrowser1.Navigate("https://znw-launcher.glitch.me/");
+            string token = null;
+            var games = new String[] { };
+
+            using (var Key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\znw\user", true))
+            {
+                if (Key.GetValue("token") != null)
+                {
+                    token = Key.GetValue("token").ToString();
+
+                    webBrowser1.Navigate($"https://launcher.znw.gg/?token={token}");
+                }
+                else webBrowser1.Navigate("https://launcher.znw.gg/");
+            }
             webBrowser1.ProgressChanged += new WebBrowserProgressChangedEventHandler(webpage_ProgressChanged);
             webBrowser1.DocumentTitleChanged += new EventHandler(webpage_DocumentTitleChanged);
             webBrowser1.StatusTextChanged += new EventHandler(webpage_StatusTextChanged);
@@ -61,14 +72,14 @@ namespace Launcher
         {
         }
 
-        private DateTime lastUpdate = DateTime.Now;
+        private DateTime lastEventUpdate = DateTime.Now;
 
         private void webpage_DocumentTitleChanged(object sender, EventArgs e)
         {
             //cooldown, stupid ie...
-            if (lastUpdate.AddSeconds(5) < DateTime.Now)
+            if (lastEventUpdate.AddSeconds(5) < DateTime.Now)
             {
-                lastUpdate = DateTime.Now;
+                lastEventUpdate = DateTime.Now;
 
                 //get title
                 var title = webBrowser1.DocumentTitle.ToString();
