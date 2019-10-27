@@ -1,6 +1,9 @@
 ﻿using Microsoft.Win32;
 using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
+using static Launcher.Program;
 
 namespace Launcher
 {
@@ -48,20 +51,24 @@ namespace Launcher
 
         private void myBrowser()
         {
-            string token = null;
-            var games = new String[] { };
+            //Create user dir if not exist
 
-            using (var Key = Registry.CurrentUser.OpenSubKey(@"SOFTWARE\znw\user", true))
-            {
-                if (Key.GetValue("token") != null)
-                {
-                    token = Key.GetValue("token").ToString();
+            if (!Directory.Exists(userDir)) Directory.CreateDirectory(userDir);
 
-                    webBrowser1.Navigate($"https://launcher.znw.gg/?token={token}");
-                }
-                else webBrowser1.Navigate("https://launcher.znw.gg/");
-            }
-            webBrowser1.ProgressChanged += new WebBrowserProgressChangedEventHandler(webpage_ProgressChanged);
+            //read stored vars
+            if (File.Exists(tokenFile))
+                token = File.ReadAllText(tokenFile);
+            if (File.Exists(gamesFile))
+                games = new List<string>(File.ReadAllLines(gamesFile));
+
+            //construct web launch url
+            var url = $"https://launcher.znw.gg/?"+
+                $"{(token != null ? $"token={token}" : "")}"+
+                $"{(games.Count != 0 ? $"&games={String.Join(",", games)}" : "")}";
+            //Connect to Webapp to show the GUI
+            webBrowser1.Navigate(url);
+
+            //Events
             webBrowser1.DocumentTitleChanged += new EventHandler(webpage_DocumentTitleChanged);
             webBrowser1.StatusTextChanged += new EventHandler(webpage_StatusTextChanged);
             webBrowser1.Navigated += new WebBrowserNavigatedEventHandler(webpage_Navigated);
@@ -92,10 +99,28 @@ namespace Launcher
 
                     switch (@event)
                     {
+                        case "TOKEN":
+                            {
+                                File.WriteAllText(Program.tokenFile, args);
+                            }
+                            break;
+
+                        case "GAME_ADD":
+                            {
+                                games.Add(args);
+                                File.WriteAllLines(Program.gamesFile, games);
+                            } break;
+
+                        case "GAME_REMOVE":
+                            {
+                                games.Remove(args);
+                                File.WriteAllLines(Program.gamesFile, games);
+                            }
+                            break;
+
                         default:
                             {
-                                MessageBox.Show(@event);
-                                MessageBox.Show(args);
+                                MessageBox.Show($"Event: {@event}, \nArgs: {args}");
                             }
                             break;
                     }

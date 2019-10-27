@@ -7,3 +7,11 @@ C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.Properties
 C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Launcher.csproj.GenerateResource.Cache
 C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.exe
 C:\Users\WmsShell\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.pdb
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\bin\Debug\Web_Browser.exe.config
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\bin\Debug\Web_Browser.exe
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\bin\Debug\Web_Browser.pdb
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\obj\Debug\Launcher.Form1.resources
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.Properties.Resources.resources
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\obj\Debug\Launcher.csproj.GenerateResource.cache
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.exe
+C:\Users\Anwender\Source\Repos\znw-launcher-exe\obj\Debug\Web_Browser.pdb
